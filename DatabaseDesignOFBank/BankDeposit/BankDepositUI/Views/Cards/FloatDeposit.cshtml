@@ -1,0 +1,28 @@
+﻿@{
+
+    Layout = "_CardsDrawalPageLayout";
+
+    ViewData["Title"] = "Home Page";
+
+    var user = Model;
+
+}
+
+<div id="content" class="col-md-12 full-page login" style="position:absolute;left:400px">
+    <div class="inside-block" style="position:absolute">
+        <img src="/assets/images/logo-big.png" alt="" class="logo">
+        <h1><strong>您好</strong> 请输入存款金额</h1>
+        <form name="form1" class="form-horizontal" role="form" method="post" action="/Cards/FloatDepositInformation" onsubmit="return beforeSubmit(this);">
+            <div class="form-group">
+                <label for="YourName" class="col-sm-4 control-label">金额</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control colorpicker-element" id="colorpicker" name="money" value="">
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" class="btn btn-greensea">确定</button>
+                <button type="reset" class="btn btn-red">重新输入</button>
+            </div>
+        </form>
+    </div>
+</div>

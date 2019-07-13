@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "_SignInLayout";
+
+}
+
+<form action="@Url.Action("ReLogin","Cards")">
+    <div class="controls">
+        <h3>活期存款余额：@Model.balance</h3>
+        <h3>产生利息：@Model.rate</h3><h3>
+        <button class="btn btn-greensea"><i class="fa fa-home"></i>返回主页</button>
+    </div>
+</form>
