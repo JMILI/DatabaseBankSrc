@@ -12230,11 +12230,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DeskJIMILI\\DeskTop\\DatabaseDesignOFBank\\BankDeposit.Service\\BankDeposit.Service.csproj",
+      "projectUniqueName": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\DatabaseBankSrc\\DatabaseDesignOFBank\\BankDeposit.Service\\BankDeposit.Service.csproj",
       "projectName": "BankDeposit.Service",
-      "projectPath": "D:\\DeskJIMILI\\DeskTop\\DatabaseDesignOFBank\\BankDeposit.Service\\BankDeposit.Service.csproj",
+      "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\DatabaseBankSrc\\DatabaseDesignOFBank\\BankDeposit.Service\\BankDeposit.Service.csproj",
       "packagesPath": "C:\\Users\\JIMILI\\.nuget\\packages\\",
-      "outputPath": "D:\\DeskJIMILI\\DeskTop\\DatabaseDesignOFBank\\BankDeposit.Service\\obj\\",
+      "outputPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\DatabaseBankSrc\\DatabaseDesignOFBank\\BankDeposit.Service\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -12257,11 +12257,11 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "D:\\DeskJIMILI\\DeskTop\\DatabaseDesignOFBank\\BankDeposit.Data\\BankDeposit.Data.csproj": {
-              "projectPath": "D:\\DeskJIMILI\\DeskTop\\DatabaseDesignOFBank\\BankDeposit.Data\\BankDeposit.Data.csproj"
+            "F:\\SoftOfJIMILI\\Github\\workspaceJM\\DatabaseBankSrc\\DatabaseDesignOFBank\\BankDeposit.Data\\BankDeposit.Data.csproj": {
+              "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\DatabaseBankSrc\\DatabaseDesignOFBank\\BankDeposit.Data\\BankDeposit.Data.csproj"
             },
-            "D:\\DeskJIMILI\\DeskTop\\DatabaseDesignOFBank\\BankDeposit.Model\\BankDeposit.Model.csproj": {
-              "projectPath": "D:\\DeskJIMILI\\DeskTop\\DatabaseDesignOFBank\\BankDeposit.Model\\BankDeposit.Model.csproj"
+            "F:\\SoftOfJIMILI\\Github\\workspaceJM\\DatabaseBankSrc\\DatabaseDesignOFBank\\BankDeposit.Model\\BankDeposit.Model.csproj": {
+              "projectPath": "F:\\SoftOfJIMILI\\Github\\workspaceJM\\DatabaseBankSrc\\DatabaseDesignOFBank\\BankDeposit.Model\\BankDeposit.Model.csproj"
             }
           }
         }

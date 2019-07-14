@@ -122,10 +122,10 @@ namespace BankDeposit.Service
         public void AddFlowBalanceService(DepositorAndCard dAndC, Cards card, int mid)
         {
             Cards cardss = new Cards();
-            cardss = cardServive.CheakCards((int)dAndC.Dcid);//查询原来的银行卡信息
-            cardss.CflowBalance = cardss.CflowBalance + card.CflowBalance;//修改活期余额
+            cardss.CflowBalance = cardServive.FlowBalanceService((int)dAndC.Dcid)[1] + card.CflowBalance;//修改活期余额
+            cardss.Cid = (int)dAndC.Dcid;
             cardServive.UpdataFlowBalanceService(cardss);//更新
-            recordsService.AddRecordsService(dAndC, cardServive.CheakCards((int)dAndC.Dcid).Cicid, 2, (double)card.CflowBalance, mid);//Records生成记录
+            recordsService.AddRecordsService(dAndC, cardServive.CheakCardsService((int)dAndC.Dcid).Cicid, 2, (double)card.CflowBalance, mid);//Records生成记录
         } 
         #endregion
     }

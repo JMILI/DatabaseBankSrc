@@ -22,7 +22,7 @@ namespace BankDeposit.Service
         /// </summary>
         /// <param name="ICid">传入身份证号ICid</param>
         /// <returns></returns>
-        public Idcard QueryData(int ICid)
+        public Idcard QueryService(int ICid)
         {
             return accessIdcard.QueryData(ICid);
         }

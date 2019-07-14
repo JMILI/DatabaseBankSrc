@@ -70,7 +70,7 @@ namespace BankDeposit.Data
         /// </summary>
         /// <param name="cid"></param>
         /// <param name="money"></param>
-        public void UpdateCards(int cid, double money)
+        public void UpdateCardsData(int cid, double money)
         {
             using (var dbContext = new bankContext())
             {
@@ -99,7 +99,7 @@ namespace BankDeposit.Data
         /// 增添银行卡用户
         /// </summary>
         /// <param name="card">前端页面填写的信息：CflowBalanceRate，Cpassword，Cuid</param>
-        public void Add(Cards card)
+        public void AddData(Cards card)
         {
             using (var dbContext = new bankContext())
             {

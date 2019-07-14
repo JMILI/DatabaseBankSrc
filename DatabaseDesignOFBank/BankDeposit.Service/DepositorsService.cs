@@ -47,7 +47,7 @@ namespace BankDeposit.Service
                     }
                     else
                     {
-                        depositors.Dname = idcardService.QueryData(depositor.Uicid).Icname;
+                        depositors.Dname = idcardService.QueryService(depositor.Uicid).Icname;
                     }
                 }
             }
@@ -128,11 +128,11 @@ namespace BankDeposit.Service
             {
                 if (depositor1.Uid == depositor.Duid)//判断查找到的储户是不是我们要找的
                 {
-                    card = cardsService.CheakCards((int)depositor.Dcid);
+                    card = cardsService.CheakCardsService((int)depositor.Dcid);
                     if (card != null && card.Cuid == depositor.Duid && card.Cicid == depositor.Dicid)//判断查找到的银行卡是不是我们要找的
                     {
                         accessDepositors.UpdataBandData(depositor);//更新绑定卡号
-                        idcard = idcardService.QueryData(card.Cicid);
+                        idcard = idcardService.QueryService(card.Cicid);
                         DAndC.Dname = idcard.Icname;
                         DAndC.Dcid = depositor.Dcid;
                         DAndC.Duid = depositor.Duid;
@@ -187,23 +187,23 @@ namespace BankDeposit.Service
             Cards card2 = new Cards();
             Depositors depositor = new Depositors();
             //找对方账号，姓名,
-            card1 = cardsService.CheakCards(transferrecords.TpartyBcid);
+            card1 = cardsService.CheakCardsService(transferrecords.TpartyBcid);//没加利息的账户
             if (card1 != null && card1.Cid == transferrecords.TpartyBcid)//找对方银行卡号
             { //找到则找自己账号。钱够不够
-                card2 = cardsService.CheakCards(transferrecords.TpartyAcid);
+                card2 = cardsService.CheakCardsService(transferrecords.TpartyAcid);//没加利息的账户
 
                 if (card2 != null && card2.Cid == transferrecords.TpartyAcid && card2.Cpassword == password) //找甲方（自己）银行卡号并验证密码
                 {
-                    if (card2.CflowBalance >= transferrecords.TtransferBalance)
+                    if (cardsService.FlowBalanceService(card2.Cid)[1] >= transferrecords.TtransferBalance)
                     {
-                        //够则修改自己的账户余额（减少）
-                        card2.CflowBalance = (double)(card2.CflowBalance - transferrecords.TtransferBalance);
+                        //够则修改自己的账户余额（减少） FlowBalanceService(int cid)
+                        card2.CflowBalance = (double)(cardsService.FlowBalanceService(card2.Cid)[1] - transferrecords.TtransferBalance);
                         cardsService.UpdataFlowBalanceService(card2);
-                        //给对方增加钱
-                        card1.CflowBalance = (double)(card1.CflowBalance + transferrecords.TtransferBalance);
+                        //给对方增加钱,利息同时更新
+                        card1.CflowBalance = (double)(cardsService.FlowBalanceService(card1.Cid)[1] + transferrecords.TtransferBalance);
                         cardsService.UpdataFlowBalanceService(card1);
                         //生成转账记录
-                        transferrecords.TpartyBname = idcardService.QueryData(card1.Cicid).Icname;//找到名字并加入
+                        transferrecords.TpartyBname = idcardService.QueryService(card1.Cicid).Icname;//找到名字并加入
                         transferRecordsService.AddtransferRecordsService(transferrecords);
                         boo = true;
                     }

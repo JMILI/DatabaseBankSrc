@@ -50,6 +50,7 @@
         $('#jilu').bind('click', function () {
             var url = "/Depositors/QueryTenRecords";
             var strHtml;
+            var s;
             $.ajax({
                 "url": url,
                 "async": true,
@@ -63,13 +64,13 @@
                         strHtml += '<td>' + obj.Ruid + '</td>'
                         strHtml += '<td>' + obj.Rcid + '</td>'
                         strHtml += '<td>' + obj.Ricid + '</td>'
+                        strHtml += '<td>' + s+ '</td>'
                         strHtml += '<td>' + obj.RflowDeposit + '</td>'
                         strHtml += '<td>' + obj.RfixDeposit + '</td>'
                         strHtml += '<td>' + obj.Rwithdrawals + '</td>'
                         strHtml += '<td>' + obj.RnowDateTime + '</td>'
                         strHtml += '</tr>';
                     })
-
                     $('#jilus').empty().append(strHtml);
                     //$("#tb_list").text(result);
                 },
@@ -324,7 +325,7 @@
 
                     $('#record').empty().append(strHtml);
                     //$("#tb_list").text(result);
-                 }, error: function (err) {
+                }, error: function (err) {
                     alert("您还没有绑定银行卡，请绑定银行卡后再进行查询");
                 }
             })

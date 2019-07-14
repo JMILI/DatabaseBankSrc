@@ -32,7 +32,7 @@ namespace BankDeposit.Data
         /// </summary>
         /// <param name="difference">传入要查询月份和当前月份的差值，注意传入0，表示当前月</param>
         /// <returns>返回要查询月份的记录</returns>
-        public List<Records> StatisticalByMonth(int difference)
+        public List<Records> StatisticalByMonthData(int difference)
         {
             using (bankContext dbContext = new bankContext())
             {
@@ -56,7 +56,7 @@ namespace BankDeposit.Data
             {
                 //取出记录表中该卡活动的记录中活期存款或者活期取款不为零的第一项记录，
                 //记录以降序排列，就可以取出最近对活期存款的操作记录
-                record = dbContext.Records.FromSql("select * from Records where Rcid={0} And RflowDeposit != 0 or Rwithdrawals != 0 order by Rid desc", cid).AsNoTracking().ToList().FirstOrDefault();
+                record = dbContext.Records.FromSql("select * from Records where Rcid={0} And RflowDeposit != 0 or Rwithdrawals != 0 order by Rid desc", cid).ToList().FirstOrDefault();
                 return record.RnowDateTime;
             }
         }
@@ -70,7 +70,7 @@ namespace BankDeposit.Data
         /// <param name="v">出入参数v代表类型,1：代表取款，2：代表活期存款，其他：代表定期存款。每次传入一个类型的值，其他两项字段默认为0</param>
         /// <param name="money">金额</param>
         /// <param name="mid">业务办理员</param>
-        public void Add(DepositorAndCard dAndC, int icid, int v, double money, int mid)
+        public void AddData(DepositorAndCard dAndC, int icid, int v, double money, int mid)
         {
             using (var dbContext = new bankContext())
             {

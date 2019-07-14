@@ -26,7 +26,7 @@ namespace BankDeposit.Data
 
         #region 增加转账记录
 
-        public void Add(Transferrecords transferrecords)
+        public void AddData(Transferrecords transferrecords)
         {
             using (var dbContext = new bankContext())
             {
@@ -59,14 +59,22 @@ namespace BankDeposit.Data
         /// <returns></returns>
         public DateTime? TransferRecordsTimeData(int cid)
         {
+            //DateTime dt = ;
+            DateTime t2 = DateTime.MinValue;
             Transferrecords record = new Transferrecords();
+            record = null;
+            //record.TtransferTime = t2;
             using (bankContext dbContext = new bankContext())
             {
                 int cid1 = cid;
                 //取出记录表中该卡活动的记录中取涉及转账时账号为cid的第一项记录，
-                //记录以降序排列，就可以取出最近对活期存款的操作记录
-                record = dbContext.Transferrecords.FromSql("select * from Transferrecords where TpartyAcid={0} or TpartyBcid={1}   order by Tid desc", cid,cid1).AsNoTracking().ToList().FirstOrDefault();
-                return record.TtransferTime;
+                //记录以降序排列，就可以取出最近对活期存款的操作记录//这里有巴哥
+                record = dbContext.Transferrecords.FromSql("select * from Transferrecords where TpartyAcid={0} or TpartyBcid={1}   order by Tid desc", cid, cid1).AsNoTracking().ToList().FirstOrDefault();
+                if (record != null)
+                {
+                    t2 = (DateTime)record.TtransferTime;
+                }
+                return t2;
             }
         }
         #endregion

@@ -23,7 +23,7 @@ namespace BankDeposit.Service
         /// <returns>返回访问层的返回值，每月的记录信息（记录表Records）</returns>
         public List<Records> StatisticalByMonthService(int difference)
         {
-            return  accessRecords.StatisticalByMonth(difference);
+            return  accessRecords.StatisticalByMonthData(difference);
         }
         #endregion
 
@@ -37,7 +37,7 @@ namespace BankDeposit.Service
         /// <param name="mid">业务办理员，0代表ATM操作，1代表是储户操作，Rmid有值（管理员账号）时代表柜台管理员操作,默认为储户系统转账</param>
         public void AddRecordsService(DepositorAndCard dAndC, int icid, int v, double money, int mid)
         {
-            accessRecords.Add(dAndC, icid, v, money, mid);
+            accessRecords.AddData(dAndC, icid, v, money, mid);
         }
         #endregion
 
@@ -47,7 +47,7 @@ namespace BankDeposit.Service
         /// </summary>
         /// <param name="cid"></param>
         /// <returns></returns>
-        internal DateTime RecordsTimeData(int cid)
+        internal DateTime RecordsTimeService(int cid)
         {
             return (DateTime)accessRecords.RecordsTimeData(cid);
         }

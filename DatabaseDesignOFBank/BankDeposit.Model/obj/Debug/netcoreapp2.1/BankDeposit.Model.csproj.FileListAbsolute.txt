@@ -31,3 +31,14 @@ D:\DeskJIMILI\DeskTop\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreap
 D:\DeskJIMILI\DeskTop\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.AssemblyInfo.cs
 D:\DeskJIMILI\DeskTop\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.dll
 D:\DeskJIMILI\DeskTop\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.pdb
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\bin\Debug\netcoreapp2.1\BankDeposit.Model.deps.json
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\bin\Debug\netcoreapp2.1\BankDeposit.Model.runtimeconfig.json
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\bin\Debug\netcoreapp2.1\BankDeposit.Model.runtimeconfig.dev.json
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\bin\Debug\netcoreapp2.1\BankDeposit.Model.dll
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\bin\Debug\netcoreapp2.1\BankDeposit.Model.pdb
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.csprojAssemblyReference.cache
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.csproj.CoreCompileInputs.cache
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.AssemblyInfoInputs.cache
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.AssemblyInfo.cs
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.dll
+F:\SoftOfJIMILI\Github\workspaceJM\DatabaseBankSrc\DatabaseDesignOFBank\BankDeposit.Model\obj\Debug\netcoreapp2.1\BankDeposit.Model.pdb

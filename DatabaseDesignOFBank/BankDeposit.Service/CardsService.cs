@@ -43,7 +43,7 @@ namespace BankDeposit.Service
                 {
                     cards.Duid = (int)card.Cuid;//返回对象装入值
                     cards.Dcid = card.Cid;
-                    cards.Dname = idcardService.QueryData(card.Cicid).Icname;
+                    cards.Dname = idcardService.QueryService(card.Cicid).Icname;
                 }
             }
             else
@@ -62,7 +62,7 @@ namespace BankDeposit.Service
         /// <param name="identity">传入操作类型，此处为1，为取款</param>
         /// <param name="money">传入取钱金额</param>
         /// <returns></returns>
-        public bool Drawal(DepositorAndCard dAndC, int identity, double money)
+        public bool DrawalService(DepositorAndCard dAndC, int identity, double money)
         {
             List<Double> record = new List<Double>();
             record = FlowBalanceService((int)dAndC.Dcid);//查询银行卡活期的余额
@@ -70,8 +70,8 @@ namespace BankDeposit.Service
             {
                 //1.修改卡的表项，//取钱，
                 record[1] = record[1] - money;//使用计算的余额减去要取余额。
-                CardsAccess.UpdateCards((int)dAndC.Dcid, record[1]);//更新余额
-                AddRecords(dAndC, CardsAccess.CardsData((int)dAndC.Dcid).Cicid, identity, money);//增加记录
+                CardsAccess.UpdateCardsData((int)dAndC.Dcid, record[1]);//更新余额
+                AddRecordsService(dAndC, CardsAccess.CardsData((int)dAndC.Dcid).Cicid, identity, money);//增加记录
                 return true;
             }
             else return false;//不可取
@@ -84,13 +84,13 @@ namespace BankDeposit.Service
         /// <param name="v">出入参数v代表类型,1：代表取款，2：代表活期存款，其他：代表定期存款。每次传入一个类型的值，其他两项字段默认为0</param>
         /// <param name="money">金额</param>
         /// <param name="mid">业务办理员</param>
-        public void AddRecords(DepositorAndCard dAndC, int Icid, int v, double money)
+        public void AddRecordsService(DepositorAndCard dAndC, int Icid, int v, double money)
         {
             //此处零代表的是记录表中Mid填为0，代表取款是在ATM中进行的。
             recordsService.AddRecordsService(dAndC, Icid, v, money, 0);
         }
 
-     
+
 
 
 
@@ -111,21 +111,40 @@ namespace BankDeposit.Service
             {
                 //计算利息
                 List<Double> record = new List<Double>();
-                var balance = (double)card.CflowBalance;//取得卡表中活期现有存款
-                var rate = card.CflowBalanceRate / 360;//取得相应利率
-                DateTime dt1 = recordsService.RecordsTimeData(cid);//从records表中取得上次对活期存款操作的最后时间
-                DateTime dt3 = transferRecordsService.RecordsTimeData(cid);
-                if (DateTime.Compare(dt3, dt1) > 0)
-                {
-                    dt1 = dt3;
-                }
+                double balances = 0;//存款
+                double rates = 0;//利息
+                double balance = (double)card.CflowBalance;//取得卡表中活期现有存款
+                double rate = (double)card.CflowBalanceRate / 360;//取得相应利率
                 DateTime dt2 = System.DateTime.Now;//生成新的系统时间
-                Double Day = dt2.Day - dt1.Day;//天数差值
-                var rates = (double)rate * Day * balance;//计算利息
-                balance = rates + balance;
+                Double Day = 0;//记录相差天数
+                DateTime dt1 = recordsService.RecordsTimeService(cid);//从records表中取得上次对活期存款操作的最后时间
+                DateTime dt3 = transferRecordsService.RecordsTimeData(cid);//从转账记录中找到最后一次交易时间
+                if (dt3 != DateTime.MinValue && dt1 != DateTime.MinValue)
+                {
+                    if (DateTime.Compare(dt3, dt1) > 0)
+                    {
+                        Day = dt2.Day - dt3.Day;//天数差值
+                    }
+                    else
+                    {
+                        Day = dt2.Day - dt1.Day;//天数差值
+                    }
+                }
+                else if (dt3 != DateTime.MinValue)
+                {
+                    Day = dt2.Day - dt3.Day;
+
+                }
+                else if (dt3 == DateTime.MinValue && dt1 == DateTime.MinValue)
+                {
+                    Day = 0;
+
+                }
+                rates = (double)rate * Day * balance;//计算利息
+                balances = rates + balance;
                 //list表中加入我们要返回的数据
                 record.Add(rates);
-                record.Add(balance);
+                record.Add(balances);
                 return record;
             }
             else return null;
@@ -139,7 +158,7 @@ namespace BankDeposit.Service
         /// <param name="card">前端页面填写的信息：CflowBalanceRate，Cpassword，Cuid</param>
         internal void AddCardService(Cards card)
         {
-            CardsAccess.Add(card);
+            CardsAccess.AddData(card);
         }
         #endregion
 
@@ -149,12 +168,13 @@ namespace BankDeposit.Service
         /// </summary>
         /// <param name="dAndC">cooike中当前账户信息：Cid，Uid，Name</param>
         /// <param name="money">前端出入ATM数钱器输入的活期存款金额</param>
-        public void AddFloatBalance(DepositorAndCard dAndC, double money)
+        public void AddFloatBalanceService(DepositorAndCard dAndC, double money)
         {
             double moneys = money;//记录存款额
-            money += (double)CardsAccess.CardsData((int)dAndC.Dcid).CflowBalance;//将存款额和原来的余额加起来，等待更新
-            CardsAccess.UpdateCards((int)dAndC.Dcid, money);//更新余额
-            recordsService.AddRecordsService(dAndC, CardsAccess.CardsData((int)dAndC.Dcid).Cicid,2, moneys, 0);//增加记录。0代表ATM
+            //money += (double)CardsAccess.CardsData((int)dAndC.Dcid).CflowBalance;//将存款额和原来的余额加起来，等待更新
+            money += FlowBalanceService((int)dAndC.Dcid)[1];
+            CardsAccess.UpdateCardsData((int)dAndC.Dcid, money);//更新余额
+            recordsService.AddRecordsService(dAndC, CardsAccess.CardsData((int)dAndC.Dcid).Cicid, 2, moneys, 0);//增加记录。0代表ATM
         }
         #endregion
 
@@ -165,7 +185,7 @@ namespace BankDeposit.Service
         /// </summary>
         /// <param name="cid">传入卡号cid</param>
         /// <returns></returns>
-        public Cards CheakCards(int cid)
+        public Cards CheakCardsService(int cid)
         {
             return CardsAccess.CardsData(cid);
         }
@@ -178,7 +198,7 @@ namespace BankDeposit.Service
         /// <param name="card">传入修改后的银行卡信息</param>
         internal void UpdataFlowBalanceService(Cards card)
         {
-            CardsAccess.UpdateCards(card.Cid, (double)card.CflowBalance);
+            CardsAccess.UpdateCardsData(card.Cid, (double)card.CflowBalance);
         }
         #endregion
 
@@ -194,6 +214,6 @@ namespace BankDeposit.Service
         }
         #endregion
 
-       
+
     }
 }

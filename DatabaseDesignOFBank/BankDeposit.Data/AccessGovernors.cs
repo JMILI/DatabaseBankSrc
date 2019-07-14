@@ -25,6 +25,7 @@ namespace BankDeposit.Data
             }
         }
         #endregion
+
         #region 增加柜台管理员
         /// <summary>
         /// 增加柜台管理员

@@ -78,7 +78,7 @@ namespace BankDepositUI.Controllers
         public IActionResult WithDrawalInformation(double money)
         {
       
-            bool istrue = cardServive.Drawal(DAndC(), 1, money);
+            bool istrue = cardServive.DrawalService(DAndC(), 1, money);
             if (istrue == true)//修改存款余额成功
             {//返回成功页面
                 return Redirect(Url.Action("Success", "Cards"));
@@ -120,7 +120,7 @@ namespace BankDepositUI.Controllers
         {
             if ((money > 0) && (money % 100 == 0))//存入金额为正，为整百判断
             {
-                cardServive.AddFloatBalance(DAndC(), money);
+                cardServive.AddFloatBalanceService(DAndC(), money);
                 return Redirect(Url.Action("Success", "Cards"));
             }
             else

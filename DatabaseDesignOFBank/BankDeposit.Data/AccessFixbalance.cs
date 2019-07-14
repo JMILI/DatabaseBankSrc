@@ -33,7 +33,7 @@ namespace BankDeposit.Data
         /// 增加定期存款
         /// </summary>
         /// <param name="fix">Fyear，FfixBalanceRate，FfixBalance，FfixBalance</param>
-        public void Add(Fixbalances fix)
+        public void AddData(Fixbalances fix)
         {
             using (var dbContext = new bankContext())
             {

@@ -19,6 +19,7 @@ namespace BankDepositUI.Controllers
             return View();
         }
         #endregion
+
         #region 验证密码取款
         public IActionResult VerifyPasswordError()
         {
@@ -26,12 +27,14 @@ namespace BankDepositUI.Controllers
         }
 
         #endregion
+
         #region 管理员登录银行卡报错
         public IActionResult CardsLoginError()
         {
             return View();
         }
         #endregion
+
         #region 账户已存在页面
         public IActionResult DepositoryExistError()
         {

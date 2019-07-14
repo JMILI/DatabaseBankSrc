@@ -43,14 +43,14 @@ namespace BankDeposit.Service
         }
         #endregion
 
-        #region MyRegion
+        #region 增添定期存款
         /// <summary>
         /// internal代表内部的意思
         /// </summary>
         /// <param name="fix">Fyear，FfixBalanceRate，FfixBalance，FfixBalance</param>
         internal void AddFixBalanceService(Fixbalances fix)
         {
-            accessFixbalance.Add(fix);
+            accessFixbalance.AddData(fix);
         } 
         #endregion
 
