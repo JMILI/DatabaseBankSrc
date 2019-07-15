@@ -1,7 +1,8 @@
 ﻿@{
     Layout = "_SignInLayout";
 }
-<form name="form1" class="form-horizontal" role="form" method="post" action="@Url.Action("VerifyPassword","Depositors")" onSubmit="return beforeSubmit(this);">
+<form name="form1" class="form-horizontal" role="form" method="post" action="@Url.Action("VerifyPassword","Depositors")"
+      onSubmit="return beforeSubmit(this);">
     <div class="form-group">
         <label for="YourName" class="col-sm-4 control-label">对方账号</label>
         <div class="col-sm-8">
@@ -29,8 +30,7 @@
         if (form.TtransferBalance.value == '') {
             alert('转账金额不能为空！');
             form.TtransferBalance.focus();
-            return false;
+            return false;}
         }
     }
-}
 </script>

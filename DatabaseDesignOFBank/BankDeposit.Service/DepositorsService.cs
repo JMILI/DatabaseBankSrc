@@ -18,6 +18,7 @@ namespace BankDeposit.Service
         public static FixbalanceService fixbalanceService = new FixbalanceService();
         public static TransferRecordsService transferRecordsService = new TransferRecordsService();
         public static IdcardService idcardService = new IdcardService();
+        public static RecordsService recordsService = new RecordsService();
         #endregion
 
         #region 查询储户 登录
@@ -94,7 +95,7 @@ namespace BankDeposit.Service
         /// <returns>返回一个根据储户当前默认银行卡的交易记录，取前十项</returns>
         public List<Records> TenRecordsService(int cid)
         {
-            return cardsService.TenRecordsService(cid);
+            return recordsService.TenRecordsService(cid);
         }
         #endregion
 

@@ -59,11 +59,9 @@ namespace BankDeposit.Data
         /// <returns></returns>
         public DateTime? TransferRecordsTimeData(int cid)
         {
-            //DateTime dt = ;
             DateTime t2 = DateTime.MinValue;
             Transferrecords record = new Transferrecords();
             record = null;
-            //record.TtransferTime = t2;
             using (bankContext dbContext = new bankContext())
             {
                 int cid1 = cid;

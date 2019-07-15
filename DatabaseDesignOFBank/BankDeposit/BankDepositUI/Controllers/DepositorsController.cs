@@ -299,7 +299,6 @@ namespace BankDepositUI.Controllers
         /// <returns></returns>
         public IActionResult Transfer(Cards card)
         {
-
             transferrecords.TpartyAcid = (int)DAndC().Dcid;//将转账甲方账号，姓名，给转账记录对象
             transferrecords.TpartyAname = DAndC().Dname;
             transferrecords.Tmid = 1;

@@ -52,6 +52,17 @@ namespace BankDeposit.Service
             return (DateTime)accessRecords.RecordsTimeData(cid);
         }
         #endregion
+        #region 查询事项交易记录
+        /// <summary>
+        /// CardsService层用来查询前十项交易记录的函数,向AccessCards对象发送请求。
+        /// </summary>
+        /// <param name = "cid" > 传入从cooike中查询的cid </ param >
+        /// < returns > 返回一个根据储户当前默认银行卡的交易记录，取前十项</returns>
+        internal List<Records> TenRecordsService(int cid)
+        {
+            return accessRecords.TenRecordsData(cid);
+        }
+        #endregion
 
     }
 }

@@ -116,6 +116,7 @@ namespace BankDeposit.Service
                 double balance = (double)card.CflowBalance;//取得卡表中活期现有存款
                 double rate = (double)card.CflowBalanceRate / 360;//取得相应利率
                 DateTime dt2 = System.DateTime.Now;//生成新的系统时间
+
                 Double Day = 0;//记录相差天数
                 DateTime dt1 = recordsService.RecordsTimeService(cid);//从records表中取得上次对活期存款操作的最后时间
                 DateTime dt3 = transferRecordsService.RecordsTimeData(cid);//从转账记录中找到最后一次交易时间
@@ -123,23 +124,21 @@ namespace BankDeposit.Service
                 {
                     if (DateTime.Compare(dt3, dt1) > 0)
                     {
-                        Day = dt2.Day - dt3.Day;//天数差值
+                        //Day = dt2.Day - dt2.Day;//
+                        Day = DateDiff(dt3, dt2);
                     }
                     else
                     {
-                        Day = dt2.Day - dt1.Day;//天数差值
+                        //Day = dt2.Day - dt1.Day;//天数差值
+                        Day = DateDiff(dt1, dt2);
                     }
                 }
-                else if (dt3 != DateTime.MinValue)
-                {
-                    Day = dt2.Day - dt3.Day;
-
+                else if (dt3 != DateTime.MinValue) {
+                    //Day = dt2.Day - dt3.Day;
+                    Day = DateDiff(dt3, dt2);
                 }
                 else if (dt3 == DateTime.MinValue && dt1 == DateTime.MinValue)
-                {
-                    Day = 0;
-
-                }
+                { Day = 0; }
                 rates = (double)rate * Day * balance;//计算利息
                 balances = rates + balance;
                 //list表中加入我们要返回的数据
@@ -151,6 +150,17 @@ namespace BankDeposit.Service
         }
         #endregion
 
+        #region 计算天数
+        private static int DateDiff(DateTime dateStart, DateTime dateEnd)
+        {
+            DateTime start = Convert.ToDateTime(dateStart.ToShortDateString());
+            DateTime end = Convert.ToDateTime(dateEnd.ToShortDateString());
+
+            TimeSpan sp = end.Subtract(start);
+
+            return sp.Days;
+        } 
+        #endregion
         #region 注册银行卡
         /// <summary>
         /// 注册银行卡 业务逻辑层，是CardsService类的函数
@@ -201,19 +211,6 @@ namespace BankDeposit.Service
             CardsAccess.UpdateCardsData(card.Cid, (double)card.CflowBalance);
         }
         #endregion
-
-        #region 查询事项交易记录
-        /// <summary>
-        /// CardsService层用来查询前十项交易记录的函数,向AccessCards对象发送请求。
-        /// </summary>
-        /// <param name="cid">传入从cooike中查询的cid</param>
-        /// <returns>返回一个根据储户当前默认银行卡的交易记录，取前十项</returns>
-        internal List<Records> TenRecordsService(int cid)
-        {
-            return CardsAccess.TenRecordsData(cid);
-        }
-        #endregion
-
 
     }
 }

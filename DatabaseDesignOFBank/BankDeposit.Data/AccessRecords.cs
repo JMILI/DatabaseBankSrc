@@ -56,7 +56,7 @@ namespace BankDeposit.Data
             {
                 //取出记录表中该卡活动的记录中活期存款或者活期取款不为零的第一项记录，
                 //记录以降序排列，就可以取出最近对活期存款的操作记录
-                record = dbContext.Records.FromSql("select * from Records where Rcid={0} And RflowDeposit != 0 or Rwithdrawals != 0 order by Rid desc", cid).ToList().FirstOrDefault();
+                record = dbContext.Records.FromSql("select * from Records where Rcid={0} And (RflowDeposit != 0 or Rwithdrawals != 0) order by Rid desc", cid).ToList().FirstOrDefault();
                 return record.RnowDateTime;
             }
         }
