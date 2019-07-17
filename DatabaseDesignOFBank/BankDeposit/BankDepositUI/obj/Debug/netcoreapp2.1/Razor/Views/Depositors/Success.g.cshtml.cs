@@ -60,7 +60,7 @@ using BankDepositUI.Models;
             WriteLiteral("\r\n<h1 class=\"error\">成功 <strong></strong></h1>\r\n");
             EndContext();
             BeginContext(85, 182, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e107730914e5415a9208fbb0ae9306fa", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a4dcedca7c6b40c4a6e48bf9347403d2", async() => {
                 BeginContext(136, 124, true);
                 WriteLiteral("\r\n    <div class=\"controls\">\r\n        <button class=\"btn btn-greensea\"><i class=\"fa fa-home\"></i>返回主页</button>\r\n    </div>\r\n");
                 EndContext();

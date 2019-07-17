@@ -24,8 +24,7 @@ namespace BankDepositUI.Controllers
     {
         #region 实例化一些工具对象
         public static DepositorsService depositorServive = new DepositorsService();
-
-        public static Transferrecords transferrecords = new Transferrecords();
+        public static Transferrecords transferrecords = new Transferrecords();//代码需求
         #endregion
 
         #region “登录”功能 已实现
@@ -302,13 +301,14 @@ namespace BankDepositUI.Controllers
             transferrecords.TpartyAcid = (int)DAndC().Dcid;//将转账甲方账号，姓名，给转账记录对象
             transferrecords.TpartyAname = DAndC().Dname;
             transferrecords.Tmid = 1;
+            transferrecords.Tid = 0;//防止该静态变量中以及有值。
             if (depositorServive.Transfer(transferrecords, MD5Encrypt64(card.Cpassword)) == true)//1:代表储户操作
             {
                 return RedirectToAction("Success", "Depositors");
             }
             else
             {
-                return  Content("<script>alert('密码错误');history.go(-1);</script>", "text/html;charset=UTF-8");
+                return  Content("<script>alert('密码错误或账户余额不足');history.go(-1);</script>", "text/html;charset=UTF-8");
 
             }
         }

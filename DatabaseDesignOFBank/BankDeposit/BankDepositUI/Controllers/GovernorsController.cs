@@ -18,7 +18,7 @@ namespace BankDepositUI.Controllers
     {
         #region  实例化一些工具对象
         public static GovernorsService governorsService = new GovernorsService();
-        public static GovernorsService managersService = new GovernorsService();
+        //public static GovernorsService managersService = new GovernorsService();
         #endregion
 
         #region  “登录”功能 已实现

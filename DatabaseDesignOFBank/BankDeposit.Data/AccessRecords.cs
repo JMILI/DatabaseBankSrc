@@ -51,15 +51,19 @@ namespace BankDeposit.Data
         /// <returns></returns>
         public DateTime? RecordsTimeData(int cid)
         {
+            DateTime t2 = DateTime.MinValue;
             Records record = new Records();
+            record = null;
             using (bankContext dbContext = new bankContext())
             {
                 //取出记录表中该卡活动的记录中活期存款或者活期取款不为零的第一项记录，
                 //记录以降序排列，就可以取出最近对活期存款的操作记录
                 record = dbContext.Records.FromSql("select * from Records where Rcid={0} And (RflowDeposit != 0 or Rwithdrawals != 0) order by Rid desc", cid).ToList().FirstOrDefault();
-                return record.RnowDateTime;
+                if (record != null) t2 = (DateTime)record.RnowDateTime;
             }
+            return t2;
         }
+
         #endregion
 
         #region 增加交易记录

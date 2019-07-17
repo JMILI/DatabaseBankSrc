@@ -19,7 +19,7 @@ namespace BankDepositUI.Controllers
         #region 实例化一些工具对象
         public static Managers manager = new Managers();
         public static ManagersService managerServive = new ManagersService();
-        public static CardsController cardsController = new CardsController();
+        //public static CardsController cardsController = new CardsController();
         #endregion
 
         #region “登录”功能 已实现

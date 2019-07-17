@@ -61,7 +61,7 @@ using BankDepositUI.Models;
             WriteLiteral("\r\n");
             EndContext();
             BeginContext(42, 256, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "365eb9a692b04f1fb4f469aa1ab6c436", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "1fffa86c863b4c5eada9dea6d1d4b7b4", async() => {
                 BeginContext(88, 49, true);
                 WriteLiteral("\r\n    <div class=\"controls\">\r\n        <h3>活期存款余额：");
                 EndContext();

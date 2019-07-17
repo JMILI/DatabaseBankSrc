@@ -18,7 +18,7 @@ namespace BankDepositUI.Controllers
     {
         #region 实例化一些工具对象
         public static CardsService cardServive = new CardsService();
-        public static RecordsService recordsService = new RecordsService();
+        //public static RecordsService recordsService = new RecordsService();
         #endregion
 
         #region “登录”功能 已实现

@@ -13,9 +13,9 @@ namespace BankDeposit.Service
     public class ManagersService
     {
         #region 实例化一些工具对象
-        public static AccessManagers access = new AccessManagers();
+        public static AccessManagers accessManagers = new AccessManagers();
         public static CardsService cardServive = new CardsService();
-        public static AccessInformation accessInformation = new AccessInformation();
+        public static AccessInformation accessManagersInformation = new AccessInformation();
         public static FixbalanceService fixbalanceService = new FixbalanceService();
         public static RecordsService recordsService = new RecordsService();
         #endregion
@@ -28,7 +28,7 @@ namespace BankDeposit.Service
         /// <returns></returns>
         public Managers QueryManagersService(User user)
         {
-            return access.QueryManagersData(user);
+            return accessManagers.QueryManagersData(user);
         }
         #endregion
 
@@ -52,7 +52,7 @@ namespace BankDeposit.Service
         /// <returns>返回业务记录</returns>
         public List<Information> BusinessRecordsService(int mid, string limit)
         {
-            return accessInformation.BusinessData(mid, limit);
+            return accessManagersInformation.BusinessData(mid, limit);
         }
         #endregion
 

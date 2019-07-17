@@ -28,9 +28,9 @@ namespace BankDeposit.Service
         #endregion
 
         #region 增加转账记录
-        internal void AddtransferRecordsService(Transferrecords transferrecords)
+        internal void AddtransferRecordsService(Transferrecords transferrecord)
         {
-            acessTransferRecords.AddData(transferrecords);
+            acessTransferRecords.AddData(transferrecord);
         } 
         #endregion
 
